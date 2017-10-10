@@ -1,16 +1,14 @@
 // import express = require('express');
 import { Router } from 'express';
 
-import { add } from '../ZipCodeValidator';
-const answer = add(1, 2);	//	3
-console.log("answer = " + answer);
+// console.log("answer = " + answer);
 
 
 var router = Router();
 
 router.all('/list', function (req, res) {
 	console.log(req.query);
-	res.send(JSON.stringify(req.query) + answer);
+	res.send(JSON.stringify(req.query) + "answer");
 });
 
 // router.get('/:id', function(req, res) {
@@ -20,12 +18,12 @@ router.all('/list', function (req, res) {
 // });
 
 router.get('/fb', function (req, res) {
-	res.status(403).send('^_^ forbidden!   answer = ' + answer);
+	res.status(403).send('^_^ forbidden!   answer = ' + "answer");
 });
 
 router.get('/tt', function (req, res) {
 	res.contentType('application/javascript');
-	res.sendFile('/ok.js', { root: __dirname + '/../public' });
+	res.sendFile('/ok.js', { root: __dirname + '/../../public' });
 });
 
 router.get('/mm', function (req, res) {
@@ -33,5 +31,5 @@ router.get('/mm', function (req, res) {
 });
 
 
-
+export = router;
 
