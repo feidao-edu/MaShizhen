@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>test.html</title>
+</head>
+
+<body>
+	<p>学生信息管理</p>
+	<hr />
+	<!-- /user/list?id=query_id -->
+	<!-- <form id="myForm"> -->
+	<!-- <form  method="get"> -->
+		<input id="stu_id" placeholder="请输入学号" />
+		<input id="stu_name" placeholder="请输入姓名" />
+		<input type="button" id="submit" value="新增" />
+		<input type="button" value="查询">
+	<!-- </form> -->
+	<div class="board">
+
+	</div>
+</body>
+<script type='text/javascript' src='jquery-3.2.1.js'></script>
+<script>
+	$("#submit").click(function(){
+		var stu_id = document.getElementById("stu_id").value;
+		var stu_name = document.getElementById("stu_name").value;
+		$.ajax({
+			type: 'get',
+			url: '/user/add?id='+ stu_id + '&stu_name=' + stu_name,
+            async: true,
+			success: function(e) {
+				console.log(e);
+				console.log(typeof(e))
+			},
+		});
+	});
+</script>
+
+</html>
