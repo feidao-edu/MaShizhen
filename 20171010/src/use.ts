@@ -7,5 +7,3 @@ import * as op from './add'
 // export default function add2(x: number, y: number) {
 //     return x + y;
 // }
-
-op.add2
