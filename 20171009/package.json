@@ -1,0 +1,17 @@
+{
+  "name": "20171009",
+  "version": "1.0.0",
+  "description": "typescript-test",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "typescript": "^2.6.0-dev.20171007"
+  },
+  "scripts": {
+    "test": "tsc"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -13,6 +13,7 @@ app.all('*', function (req, res, next) {      //设置协议头，不然会有�
 })
 
 
+var documentRoot = 'F:/JS/GitHub/Public/MaShizhen/20170929';
 //  /list_user 页面 GET 请求
 app.get('/list_user', function (req, res) {
   var inputData = req.query;      //存储前台表单提交的数据
@@ -38,21 +39,49 @@ app.get('/list_user', function (req, res) {
       }
     }
     // console.log(inputData.name +": "+inputData.num); //输出添加的内容
-    fileData =  JSON.parse(fileData);
+    fileData = JSON.parse(fileData);
     fileData.nameList[inputData.name] = parseInt(inputData.num);
     // JSON.parse(fileData).nameList[inputData.name] = parseInt(inputData.num);  //这是一种错误的写法，不能更改fileData
-    fs.writeFile('data.json',JSON.stringify(fileData), function (err) {
+    fs.writeFile('data.json', JSON.stringify(fileData), function (err) {
       if (err) {
         return console.error(err);
       }
       res.send("2");
-      console.log("数据写入成功！" +fileData + new Date());
+      console.log("数据写入成功！" + fileData + new Date());
     });
   }
 
 });
 
+app.get('/', function (req, res) {
+  var url = "/index.html";
+  //客户端输入的url，例如如果输入localhost:8888/index.html
+  //那么这里的url == /index.html 
+  var file = documentRoot + url;
+  //var file = url;
+  console.log("打开文件的目录" + file);
+  //E:/PhpProject/html5/websocket/www/index.html 
 
+
+  fs.readFile(file, function (err, data) {
+    if (err) {
+      res.writeHeader(404, {
+        'content-type': 'text/html;charset="utf-8"'
+      });
+      res.write('<h1>404错误</h1><p>你要找的页面不存在</p>');
+      res.end();
+    } else {
+      res.writeHeader(200, {
+        'content-type': 'text/html;charset="utf-8"'
+      });
+      res.write(data);//将index.html显示在客户端
+      res.end();
+
+    }
+
+  });
+
+});
 var server = app.listen(8080, function () {
   var host = server.address().address
   var port = server.address().port
