@@ -1,12 +1,12 @@
 import { Router } from 'express';
-var router = Router();
+const router = Router();
 
 router.get('/add', function (req, res) {
 	res.send(req.query);
 });
 
 
-export = router;
+export default router;
 // export = (()=>{
 // 	return router;
 // })
