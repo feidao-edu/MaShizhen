@@ -27,6 +27,7 @@
 		"@types/express": "^4.0.37",
 		"@types/node": "latest",
 		"express": "^4.16.2",
-		"typescript": "next"
+		"typescript": "next",
+		"ava": "^0.22.0"
 	}
 }

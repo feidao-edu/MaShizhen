@@ -1,7 +1,6 @@
 import * as  express from 'express';
-import router from './routes/users';
+import router from './routes/users'
 
-router();
 (() => {
 	const app = express();
 	// 静态文件目录

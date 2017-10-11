@@ -1,45 +1,68 @@
-//函数声明式定义
-function add1(x: number, y: number) {
-	return x + y;
+export function add1(a: number, b: number) {
+	return a + b;
 }
-//函数表达式定义
-const add2 = function (x: number, y: number) {
-	return x + y;
-};
-//自执行函数/匿名函数
-const add3 = (function (x: number, y: number) {
-	return x + y;
-}(2, 3));
-const add4 = (function (x: number, y: number) {
-	return x + y;
-})(2, 3);
-//普通箭头函数
-const add5: (x: number, y: number) => number =
-	function (x: number, y: number) { return x + y; };
-const add6: (baseValue: number, increment: number) => number =
-	function (x: number, y: number) { return x + y; };
-//使用实参对象
-function add(...args: number[]) {
-	return args.reduce((pre, cur) => {
-		return pre + cur;
-	}, 0);
-}
-//使用class类
-class Add {
-	constructor(public num1: number, public num2: number) { }
-	growOld = () => {
-		console.log(this.num1 + ' ' + this.num2);
-		return this.num1 + this.num2;
+
+export function add2(a: number) {
+	return function add(b: number) {
+		return a + b;
 	}
 }
-// var sum = new Add(1, 2);
-//使用对象和方法
-const sum = {
-	add: function () {
-		console.log(this.num1);
-		return this.num1 + this.num2;
+
+export function add3(a: number, b: number) {
+	return new Promise<number>((resolve, reject) => {
+		setTimeout(() => {
+			resolve(a + b);
+		}, 3000);
+	});
+}
+
+export function add4(a: number) {
+	return function (b: number) {
+		return a + b;
 	}
 }
-// sum.num1 = 3;
-// sum.num2 = 5;
-// sum.add()
+
+export function add5(a: number) {
+	return (b: number) => {
+		return a + b;
+	}
+}
+
+export function add6(a: number, b: number) {
+	class Add {
+		public static add(a: number, b: number) {
+			return a + b;
+		}
+	}
+	return Add.add(a, b);
+}
+
+export function add7(a: number, b: number) {
+	class Add {
+		public add(a: number, b: number) {
+			return a + b;
+		}
+	}
+	const e = new Add();
+	return e.add(a, b);
+}
+
+// add8 will work in js, too.
+// export function add8(a: number, b: number) {
+// 	function Add() { }
+// 	Add.prototype.add = function (a: number, b: number) {
+// 		return a + b;
+// 	};
+// 	const e = new Add();
+// 	return e.add(a, b);
+// }
+
+export function add9(a: () => number, b: () => number) {
+	return a() + b();
+}
+
+export async function add10(a: () => Promise<number>, b: () => Promise<number>) {
+	const aa = await a();
+	const bb = await b();
+	return aa + bb;
+}
