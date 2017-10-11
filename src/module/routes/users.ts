@@ -7,6 +7,3 @@ router.get('/add', function (req, res) {
 
 
 export default router;
-// export = (()=>{
-// 	return router;
-// })
