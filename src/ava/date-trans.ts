@@ -2,32 +2,37 @@
 const days = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 const date = new Date();
+//是不是闰年
 export function is_leapyear(year: number) {
 	date.setFullYear(year, 1, 29);
 	return date.getDate() === 29;
 }
 
+//设置的日期的年份
 export function get_year(time: number) {
 	return new Date(time).getFullYear();
 }
 
+//返回设置时间距1970/1/1 0/0/0/0的毫秒数
 export function set_year(time: number, year: number) {
-	const dt = new Date(time);
-	const dayOfMonth = dt.getDate();
+	const dt = new Date(time);			//通过毫秒数，设置一个日期1
+	const dayOfMonth = dt.getDate();	//获取 日期1 当天的 日
 
-	dt.setFullYear(year);
+	dt.setFullYear(year);				//更改“日期1”的年份
 
-	if (dt.getDate() < dayOfMonth) {
-		dt.setDate(0);
+	if (dt.getDate() < dayOfMonth) {	//判断传入的参数“year”是否合法，输入的“year”是number类型，且不出边界，即为合法
+		dt.setDate(0);					//设置为当月的最后一天，，，，这个if好像没有什么作用
 	}
-	dt.setFullYear(year);
-	return dt.getTime();
+	dt.setFullYear(year);				//如果传入的“year”越界，那么这一句也没有作用？？？？
+	return dt.getTime();				//返回距1970/1/1 0/0/0/0的毫秒数
 }
 
+//获取月份
 export function get_month(time: number) {
 	return new Date(time).getMonth() + 1;
 }
 
+//设置月份
 export function set_month(time: number, month: number) {
 	const dt = new Date(time);
 	const dayOfMonth = dt.getDate();
@@ -38,20 +43,24 @@ export function set_month(time: number, month: number) {
 	return dt.getTime();
 }
 
+//获取设置时间的日
 export function get_day_of_month(time: number) {
 	return new Date(time).getDate();
 }
 
+//设置当月的天数
 export function set_day_of_month(time: number, day: number) {
 	const dt = new Date(time);
 	dt.setDate(day);
 	return dt.getTime();
 }
 
+//获取小时
 export function get_hours(time: number) {
 	return new Date(time).getHours();
 }
 
+//设置小时
 export function set_hours(time: number, hours: number) {
 	const dt = new Date(time);
 	dt.setHours(hours);
